@@ -467,7 +467,7 @@ function checkDuplicate(target) {
 /* ----------------------------------------------------------------------------- */
 
 function createBook(event) {
-    if (bookTitle.value && bookAuthor.value) {/* Prevent default = also ignore required form tag */
+    if (bookTitle.value && bookAuthor.value) {/* Prevent default = also ignore required form */
         preventDefault(event);
         checkDuplicate(bookTitle.value)
         if (dupAlarm === 0) {
@@ -487,8 +487,6 @@ function createBook(event) {
             dupAlarm = 0;
         }
     } 
-    
-    return false
     
 }
 
@@ -584,6 +582,7 @@ function createDemo() {
                     }
                 }
                 event.target.parentNode.parentNode.parentNode.parentNode.parentNode.remove()
+                progressUpdate()
             } else {
                 myShelf.splice(event.target.getAttribute("data-id"), 1);
                 for(let i = 0; i < totalSta.length; i+=1) {
@@ -592,8 +591,9 @@ function createDemo() {
                     }
                 }
                 event.target.parentNode.parentNode.parentNode.parentNode.remove()
+                progressUpdate()
             }
-            
+            rearrange()
             const demoCurrentBooks = document.querySelectorAll(".wrapper > .book")
             const demoRemoveButtons = document.querySelectorAll(".buttons-wrapper > .delete-demo") 
             const demoProgressButtons = document.querySelectorAll(".buttons-wrapper > #progress-demo")
