@@ -1,8 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Libre+Caslon+Text&family=Poppins&display=swap');
+@import url('http://db.onlinewebfonts.com/c/ed038ea1be11eb370e1eee1e6072ef5d?family=ColombineW01-Regular');
+
+@font-face {
+    font-family: spider;
+    src: url(./torn-asunder-bb/TornAsunderBB-Regular.ttf);
+}
+
+@font-face {
+    font-family: author;
+    src: url(./allura/Allura-Regular.ttf);
+}
+
+@font-face {
+    font-family: bookCover;
+    src: url(./headway/HEADWAY.ttf);
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    border: solid 1px black;
+    
 }
 
 body {
@@ -14,18 +32,83 @@ ul {
     list-style: none;
 }
 
+button {
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+
+button:active {
+    transform: translateY(3px);
+    transition: transform 0.2s;
+}
+
 /* Header */
 
 .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #88b3ba;
+    height: 200px;
+    width: 100%;
+    padding: 20px 50px;
+    gap: 100px;
+}
+
+.header > p {
+    color: white;
+    font-size: 70px;
+    font-family: 'Fredericka the Great';
+    width: 100%;
+    height: 100%;
+    flex-grow: 2;
+}
+
+.nav {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: flex-end;
+    align-items: flex-start;
+    padding-top: 30px;
 }
 
 .nav ul {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 50px;
+}
+
+.nav ul li {
+    font-family: 'Poppins';
+}
+
+
+
+.add-book {
+    display: flex;
+    gap: 10px;
+    padding: 10px 20px;
+    color: #66b7c4;
+    border: solid 3px #62929b;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.add-book:hover, .log-in:hover {
+    background-color: rgba(161, 230, 161, 0.897);
+    transform: translateY(-5px);
+    transition: transform 0.3s;
+}
+
+.log-in {
+    padding: 10px 20px;
+    cursor: pointer;
+    color: #66b7c4;
+    border: solid 3px #528891;
+    font-size: 20px;
+    font-weight: bold;
 }
 
 /* Modal */
@@ -40,42 +123,666 @@ ul {
     height: 100%;
     overflow: auto;
     background-color: rgba(0,0,0,0.4);/* Dark background to increase focus on modal */
-    padding-top: 60px;
+    padding-top: 10px;
+}
+
+.modal-content > input:hover, textarea:hover {
+    cursor: url(./quill-final.svg) 1 25, pointer; /* url - x - y */
 }
 
 .modal-content {
-    background-color: white;
+    position: relative;
     margin: 5% auto 15% auto; /* Center */
-    width: 30%;
+    width: 25%;
+    animation: animatezoom 0.6s;
+    padding: 25px 20px 35px 20px;
+    border-radius: 10px;
+    background-color: #F2EECB/* rgb(88,162,173) */;
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    box-shadow:
+    inset 0px 0 10px #eee7aa;
+    border: solid 5px #e7dd83;
 }
 
-input[type=text], label {
+@keyframes animatezoom {
+    from {transform: scale(0)} 
+    to {transform: scale(1)}
+}
+
+.modal-content > label {
+    font-family: "ColombineW01-Regular";
+    color: rgb(88,162,173);
+    font-size: 15px;
+    font-weight: bold;
+    border: solid 2px #F2EECB;
+}
+
+
+.modal-content > input {
+    border: solid 2px #e4d97b;
+    padding: 5px 10px;
+}
+
+.modal-content > input[type="file"] {
+    border: none;
+}
+
+.modal-content > input[type="file"]::file-selector-button:hover {
+    cursor: pointer;
+}
+
+
+.modal-confirmation {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.modal-confirmation > button {
+    max-width: 100px;
+    padding: 10px 20px;
+    font-family: 'Poppins';
+    border: solid 5px #e4d97b;
+}
+
+.modal-confirmation > button:hover {
+    background-color: rgb(58, 98, 104);
+    color: white;
+}
+
+.modal-confirmation > button:active {
+    transform: scale(0.8);
+}
+
+.modal-content > input, .modal-content > label {
     width: 100%;
     display: block;
+    outline: none;
+    border-radius: 5px;
 }
 
-/* Shelf-wrapper */
-
-.shelf-wrapper {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.modal-content > textarea {
+    width: 100%;
+    display: block;
+    height: 100px;
+    resize: none;
+    caret-color: yellowgreen;
+    border-radius: 5px;
+    border: solid 2px #e4d97b;
+    padding: 5px 10px;
 }
 
+.modal-content > textarea:focus {
+    outline: none;
+    caret-color: yellowgreen; /* Waiting area for text */
+}
 
-/* Shelf */
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+    display: none;
+}
 
-.shelf {
-    height: 700px;
+.modal-content > .close-modal {
+    position: absolute;
+    font-weight: bold;
+    font-size: 30px;
+    color: rgba(80, 75, 75, 0.8);
+    left: 310px;
+    top: 5px;
+}
+
+.close-modal:hover, 
+.close-modal:focus {
+    cursor: pointer;
+    color: red;
 }
 
 /* Book design */
 
+.book {/* Turn off border to get the correct evalution of shapes */
+    position: relative;
+    width: 190px;
+    height: 270px;
+    perspective: 1000px; /* Initiate 3d engine */
+    transform-style: preserve-3d; /* Ensure the 3d functionality */
     
+}
+
+.hardcover-front,
+.hardcover-back,
+.book-spine,
+.hardcover-front li,
+.hardcover-back li,
+.book-spine li {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+}
+
+.hardcover-front,
+.hardcover-back {
+    transform-origin: 0% 100%;/* pick the same starting point and the same end point */
+    user-select: none;
+}
+
+/* Front */
+
+.hardcover-front {
+    transform: rotateY(-34deg) translateZ(8px);/* Go along the 3D Z-dimension */
+    transition: all 0.8s ease, z-index 0.6s; /* Making sure the opening animation smooth and goes from index to index, avoid situation when after opening the book you can still see the front cover */
+    height: 102%; 
+    backface-visibility: hidden;
+    font-family: bookCover;
+}
+
+.hardcover-front li {
+    /* background: url(./Demo.jpg); */
+    border-radius: 0 5px 5px 0;
+    backface-visibility: hidden;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+
+.hardcover-front li:first-child {
+    transform: translateZ(2px); /* Make the cover looks a bit thicker */
+    backface-visibility: hidden;
+    border-left: solid 10px rgb(68, 67, 67);
+}
+
+.hardcover-front li:last-child {
+    transform: rotateY(180deg) translateZ(2px); /* Align the last child so first child content is visible */
+    border-radius: 5px 5px 5px 5px !important; /* Pay attention to rotate as it may modify the actual side of the object */
+    background: rgb(242, 243, 209);
+}
+
+/* ================================ */ /* Box shadow */
+
+.hardcover-front li:last-child::after {
+    position: absolute;
+    content: "";
+    height: 100%;
+    box-shadow: 10px -1px 80px 10px #666;
+    transform: rotateX(90deg) rotateZ(90deg) translateZ(-140px) translateX(2px) translateY(-78px);
+    transform-style: preserve-3d;
+    background: #a0a0a0;
+    
+}
+
+/* Back */
+
+.hardcover-back {
+    transform: rotateY(-15deg) translateZ(-8px);
+    height: 102%;
+}
+
+.hardcover-back li {
+    background: rgb(201, 201, 150);
+    border-radius: 0px 5px 5px 0px;
+    width: 97.5% !important; /* Angle gotta be realistic, shifting and opening books like this means the back cover will LOOK shorter than it actually is */
+}
+
+.hardcover-back li:first-child {
+    transform: translateZ(2px);
+}
+
+.hardcover-back li:last-child {
+    transform: translateZ(-2px);
+}
+
+/* ================================ */ /* Box shadow */
+.hardcover-back li:last-child::after {
+    position: absolute;
+    content: "";
+    height: 100%;
+    box-shadow: 10px -1px 70px 10px #666;
+    transform: rotateX(90deg) rotateZ(90deg) translateZ(-140px) translateX(2px) translateY(-78px);
+    transform-style: preserve-3d;
+    background: #a0a0a0;
+}
+
+
+/* Pages */
+
+.book-pages, .book-pages li {
+    position: absolute;
+    transform-style: preserve-3d;/* VERY IMPORTANT - YOU NEED THIS NOT Z-INDEX*/
+}
+
+.book-pages {
+    width: 100%;
+    height: 98%;
+    top: 1%; /* Height will be adjusted from bottom up so you must rely on "top" to create realisic exposure of front cover when book is opened */
+    left: 3%;
+}
+
+.book-pages li {
+    
+    border-radius: 0px 5px 5px 0px;
+    background: linear-gradient(to right, #e1ddd8 0%, #fffbf6 100%); /* Add glow gradient from left to right */
+    width: 100%;
+    height: 100%;
+    transform-origin: left center; /* Opening pages start from the center left - replicate real books */
+    transition-duration: 0.6s; /* Match the z-index transition */
+    box-shadow: inset 0px -1px 2px rgba(50, 50, 50, 0.1), inset -1px 0px 1px rgba(150, 150, 150, 0.2);
+}
+
+.book-pages li:nth-child(1) {
+    transform: rotateY(-28deg);
+}
+
+.book-pages li:nth-child(2) {
+    transform: rotateY(-30deg);
+}
+
+.book-pages li:nth-child(3) {
+    transform: rotateY(-32deg) rotateX(180deg);
+    backface-visibility: hidden;
+}
+
+.book-pages li:nth-child(4) {
+    transform: rotateY(-34deg);
+}
+
+.book-pages li:nth-child(5) {
+    transform: rotateY(-36deg);
+}
+
+/* Book spine */
+.book-spine {
+    transform: rotateY(30deg) translateZ(-2px) translateX(-5px);
+    width: 17px;
+    height: 102%;
+    background: rgb(235, 235, 183);
+    position: absolute;
+    
+}
+
+/* ================================ */ /* Box shadow */
+.book-spine li:last-child::before {
+    position: absolute;
+    content: "";
+    top: 0;
+    box-shadow: 5px -1px 100px 10px rgba(0, 0, 0, 0.2);
+    transform: rotateX(90deg) rotateZ(90deg) translateZ(-210px) translateX(2px) translateY(-6px);
+    transform-style: preserve-3d;
+    background: #a0a0a0;
+}
+
+.book-spine li:last-child::after {
+	position: absolute;
+    content: "";
+    top: 0;
+    box-shadow: 5px -1px 100px 10px rgba(0, 0, 0, 0.2);
+	transform: rotateX(90deg) rotateZ(90deg) translateZ(8px) translateX(2px) translateY(-6px);
+}
+
+/* Cover */
+.cover-design.demo1 {
+    background: url(./Demo.jpg);
+    background-size: cover;
+}
+
+.cover-design.demo2 {
+    background: url(./Demo2.jpg);
+    background-size: cover;
+}
+
+.cover-design.demo3 {
+    background: url(./Demo3.jpg);
+    background-size: cover;
+}
+
+.cover-design {
+    position: absolute;
+    top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+    backface-visibility: hidden;
+    border-radius: 0 5px 5px 0;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    font-size: 25px;
+    text-align: center;
+    padding: 20px 15px;
+    word-wrap: nowrap;
+    word-break: keep-all;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-line-clamp: 7; /* ellipsis at 11th line */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    font-family: bookCover;
+    line-height: 45px;
+}
+
+/* Special effect: Opening book */
+
+.book:hover .hardcover-front {
+    transform: rotateY(-145deg) translateZ(0);
+}
+
+.book:hover > .book-pages li:nth-child(1) {
+    transform: rotateY(-30deg);
+    transition: 1.5s;
+}
+
+.book:hover > .book-pages li:nth-child(2) {
+    transform: rotateY(-35deg);
+    transition: 1.8s;
+}
+
+.book:hover > .book-pages li:nth-child(3) {
+    transform: rotateY(-128deg) rotateX(180deg);
+    transition: 1.6s;
+}
+
+.book:hover > .book-pages li:nth-child(4) {
+    transform: rotateY(-130deg);
+    transition: 1.4s;
+}
+
+.book:hover > .book-pages li:nth-child(5) {
+    transform: rotateY(-140deg);
+    transition: 1.2s;
+}
+
+/* Carousel */
+
+.shelf-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: #666;
+}
+
+.shelf::-webkit-scrollbar, .shelf-wrapper::-webkit-scrollbar, body::-webkit-scrollbar  {
+    display: none !important;  
+}
+
+.shelf {
+    position: absolute;
+    overflow-x: scroll;
+    background: url(./shelf-final-ai.svg);
+    background-size: cover;
+    background-position: 55% 90%;
+    height: 800px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    max-width: 599vw;
+    scroll-behavior: smooth;
+    gap: 180px;
+    padding-left: 200px;
+    padding-right: 180px;
+    z-index: 0;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.shelf > label {
+    display: flex;
+    width: calc(100%/3);
+    justify-content: center;
+}
+
+.book-slot {
+    width: calc(100%/3);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+.shelf > .add-book {
+    /* To do: Turn book width and height into root variable - don't need to lookup multiple times */
+    padding: 10px; /* Prevent auto resizing even with height + width set for button */
+    border-radius: 0px;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.shelf .add-book > i {
+    font-size: 50px;
+    color:rgba(165, 154, 154, 0.8)
+}
+
+.shelf .add-book > i:active {
+    transform: scale(0.8);
+    transition: 0.2s;
+}
+
+.shelf > .add-book:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+button.carousel {
+    position: absolute;
+    background: none;
+    border: none;
+    font-size: 4rem;
+    top: 50%;
+    height: 200px;
+    transform: translateY(-50%); /* The fact that it is a button means that when you increase the height, the content itself doesn't change but the button wrapper increases in size. This solves the prob as now you can move the CONTENT of the button up and down the height, making it easy to position the button */
+    color: rgba(49, 47, 47, 0.4);
+    z-index: 100;
+}
+
+button.carousel:hover {
+    color: rgba(71, 68, 68, 0.8);
+}
+
+button.carousel > i:active {
+    transform: scale(0.8);
+}
+
+button.carousel.prev {
+    left: 1rem;
+}
+
+
+button.carousel.next {
+    right: 1rem;
+}
+
+/* Page 2 and Page 3*/
+
+.book-pages li:nth-child(3) {
+    display: flex;
+    padding: 10px 20px;
+    flex-direction: column-reverse;
+    justify-content: space-between;
+}
+
+.book-pages li:nth-child(3) > p {
+    /* transform: matrix(-1, 0, 0, 1, 0, 0) is for mirroring text which is not needed since we flip the page on the X axis 180deg => the front is now the back */
+    transform: scale(-1,-1); /* Flip item on axis X and axis Y respectively */
+    word-break:keep-all;
+    font-family: 'Libre Caslon Text';
+    font-size: 13px;
+}
+
+.book-pages li:nth-child(3) > p.bookmark-footer {
+    font-size: 15px;
+    justify-self: flex-end;
+    align-self: center;
+}
+
+.book-pages li:nth-child(2) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 10px;
+}
+
+.book-pages li:nth-child(2) > div {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.book-pages li:nth-child(2) > div p {
+    font-family: author;
+    overflow-wrap: anywhere;
+    font-size: 20px;
+}
+
+/* Buttons for book */
+
+.wrapper {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 30px;
+    align-items: center;
+    margin-bottom: 90px;
+}
+
+.buttons-wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+
+
+/* Reading progress */
+.buttons-wrapper > button:nth-child(2):hover {
+    background-color: rgb(219, 91, 91);
+    color: white;
+}
+
+.buttons-wrapper > button:nth-child(2):active{
+    transform: scale(0.8);
+}
+
+.buttons-wrapper > button {
+    padding: 10px 10px;
+    font-family: 'Poppins';
+    text-align: center;
+}
+
+.buttons-wrapper > button:nth-child(1) {
+    width: 100%;
+    font-weight: bold;
+}
+
+.buttons-wrapper > button:hover {
+    transform: translateY(-3px);
+}
+
+.no {
+    color: white;
+    background-color: rgb(133, 75, 75);  
+}
+
+.no:hover {
+    color: rgb(235, 210, 210);
+    background-color: rgba(238, 16, 16, 0.678);
+    box-shadow: 0 0.5em 0.5em ;
+}
+
+.in-progress {
+    color: white;
+    background-color: rgba(219, 219, 49, 0.781) /* #666 */;
+}
+
+.in-progress:hover {
+    color: rgba(122, 92, 10, 0.904);
+    background-color: rgba(219, 219, 49, 0.481);
+    box-shadow: 0 0.5em 0.5em ;
+}
+
+.read {
+    color: white;
+    background-color: rgb(88, 226, 88);
+}
+
+.read:hover {
+    color: green;
+    background-color: rgba(161, 230, 161, 0.897);
+    box-shadow: 0 0.5em 0.5em ;
+}
 
 /* Footer */
-
 .footer {
+    position: relative;
+    background-color: #88b3ba;
     height: 100px;
 }
 
+.footer-items {
+    position: absolute;
+    height: 100px;
+    bottom: 95px;
+    right:90px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    padding-bottom: 150px;
+    font-family: spider;
+    color:white;
+    font-size: 18px;
+}
+
+.footer-items > .progress-wrapper {
+    display:flex;
+    flex-direction: column;
+    margin-left: 40px;
+    margin-bottom: 5px;
+}
+
+.progress-wrapper > label {
+    display: block;
+    color: rgb(100, 218, 100)
+}
+
+.progress-wrapper > progress {
+    display: block;
+}
+
+p.progressing {
+    color: yellow;
+    padding-left: 10px;
+}
+
+p.untouched {
+    color: rgb(245, 170, 170);
+}
+
+/* Progression bar */
+
+progress[value] {
+    /* Reset the default appearance */
+    -webkit-appearance: none;
+     appearance: none;
+    width: 130px;
+    height: 10px;
+}
+
+progress[value]::-webkit-progress-bar {/* Container */
+    background-color: #eee;
+    border-radius: 3px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+
+progress[value]::-webkit-progress-value {
+    background-color: #65d46f;
+    border-radius: 3px; 
+    background-size: 35px 20px, 100% 100%, 100% 100%;
+}

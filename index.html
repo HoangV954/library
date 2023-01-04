@@ -6,16 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Add icons to html header -->
+    <link rel="icon" type="image/x-icon" href="./library-book-svgrepo-com.svg">
+    <link rel="shortcut icon" href="#">
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Libre+Caslon+Text&family=Poppins&display=swap" rel="stylesheet">
+    <link href="//db.onlinewebfonts.com/c/ed038ea1be11eb370e1eee1e6072ef5d?family=ColombineW01-Regular" rel="stylesheet" type="text/css"/>
+
     <script src="script.js" defer></script>
     <script src="https://kit.fontawesome.com/9d2558bfe7.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <!-- Nav Bar -->
     <div class="header">
-        <p>Bibliothèque François Mitterrand</p>
+        <p>Bibliothèque <br>François Mistletoe<br></p>
         <div class="nav">
             <ul>
-                <li><button type="submit" class="add-book"><i class="fa-sharp fa-solid fa-plus"></i></button></li>
+                <li><button type="submit" class="add-book"><i class="fa-sharp fa-solid fa-plus"></i><span>Add Book</span></button></li>
                 <li><button type="submit" class="log-in">Log in</button></li>
             </ul>
         </div>
@@ -24,22 +33,192 @@
     <div class="modal" id="modal">
         <form class="modal-content">
             <label for="title">Title</label>
-            <input type="text" id="title" placeholder="e.g. Title">
+            <input type="text" id="title" placeholder="e.g. The Dark Tower">
 
             <label for="author">Author</label>
-            <input type="text" id="author" placeholder="e.g. Author">
+            <input type="text" id="author" placeholder="e.g. Stephen King" maxlength="100">
 
             <label for="pages">Pages</label>
-            <input type="text" id="pages" placeholder="e.g. Pages">
+            <input type="number" id="pages" placeholder="e.g. 4250"><!-- Can use pattern \d input=text since maxlength doesn't affect type=number -->
 
-            <button type="submit" class="confirm" >Submit</button>
-        </form>
+            <label for="bookmark-text">Bookmark text</label>
+            <textarea type="text" id="bookmark-text" placeholder="e.g. ...And will I tell you that these three lived happily ever after? I will not, for no one ever does. But there was happiness. And they did live." maxlength="240"></textarea>
+
+            <label for="bookmark-page">Bookmark page</label>
+            <input type="number" id="bookmark-page" placeholder="e.g. 4225">
+
+            <label for="book-cover">Upload your book cover</label>
+            <!-- Only accept image files -->
+            <input type="file" id="book-cover" name="book-cover" accept="image/*">
+
+            <div class="modal-confirmation">
+               <button type="submit" class="cancel" >Cancel</button>
+               <button type="submit" class="confirm" >Submit</button>
+            </div>
+            
+            
+            <span onclick="document.getElementById(`modal`).style.display = `none`" class="close-modal"><i class="fa-solid fa-xmark"></i></span>
+        </form>   
     </div>
     <!-- Shelf -->
     <div class="shelf-wrapper">
-        <div class="shelf"></div>
+        <button class="carousel prev"><i class="fa-solid fa-angle-left"></i></button>
+
+        <div class="shelf">
+
+            <div class="book-slot">
+                <label for="0">
+                   <div class="wrapper" id="wrapper-demo">
+                      <div data-id="0" title="The return of the King" class="book">
+                         <ul class="hardcover-front" id="frontcover-demo">
+                            <li>
+                               <div class="cover-design demo1"></div>
+                            </li>
+                            <li></li>
+                         </ul>
+                         <ul class="book-pages">
+                            <li></li>
+                            <li>
+                               <div>
+                                  <p class="info-author">Author: J. R. R. Tolkien</p>
+                                  <p class="info-pages">Number of pages: 416</p>
+                               </div>
+                            </li>
+                            <li>
+                               <p class="bookmark"><br>One Ring to rule them all,<br> <br>One Ring to find them,<br> <br>One Ring to bring them all and in the darkness bind them<br> <br>In the Land of Mordor where the Shadows lie.<br></p>
+                               <p class="bookmark-footer">1</p>
+                            </li>
+                            <li></li>
+                            <li></li>
+                         </ul>
+                         <ul class="hardcover-back">
+                            <li></li>
+                            <li></li>
+                         </ul>
+                         <ul class="book-spine">
+                            <li></li>
+                            <li></li>
+                         </ul>
+                      </div>
+                      
+                      <div class="buttons-wrapper">
+                        <button class="in-progress" id="progress-demo" data-id="0" for="The return of the King">In Progress</button>
+                        <button class="delete-demo" data-id="0" for="The return of the King"><i class="fa-solid fa-trash-can"></i></button>
+                      </div>
+                   </div>
+                </label>
+                <input type="radio" id="0" name="book-activation">
+            </div>
+
+            <div class="book-slot">
+                <label for="1">
+                   <div class="wrapper" id="wrapper-demo">
+                      <div data-id="1" title="The Dark Tower: The Gun Slinger" class="book">
+                         <ul class="hardcover-front" id="frontcover-demo">
+                            <li>
+                               <div class="cover-design demo2"></div>
+                            </li>
+                            <li></li>
+                         </ul>
+                         <ul class="book-pages">
+                            <li></li>
+                            <li>
+                               <div>
+                                  <p class="info-author">Author: Stephen King</p>
+                                  <p class="info-pages">Number of pages: 224</p>
+                               </div>
+                            </li>
+                            <li>
+                               <p class="bookmark">They burned it but would not look into the light. They said the devils hypnotized, beckoned, would eventually draw the one who looked into the fires. And the next man foolish enough to look into the fire might see you.</p>
+                               <p class="bookmark-footer">8</p>
+                            </li>
+                            <li></li>
+                            <li></li>
+                         </ul>
+                         <ul class="hardcover-back">
+                            <li></li>
+                            <li></li>
+                         </ul>
+                         <ul class="book-spine">
+                            <li></li>
+                            <li></li>
+                         </ul>
+                      </div>
+                      <div class="buttons-wrapper">
+                        <button class="read" id="progress-demo" data-id="1" for="The Dark Tower: The Gun Slinger">Finished</button>
+                        <button class="delete-demo" data-id="1" for="The Dark Tower: The Gun Slinger"><i class="fa-solid fa-trash-can"></i></button>
+                      </div>
+                   </div>
+                </label>
+                <input type="radio" id="1" name="book-activation">
+            </div>
+
+            <div class="book-slot">
+                <label for="2">
+                   <div class="wrapper" id="wrapper-demo">
+                      <div data-id="2" title="Harry Potter and the Goblet of Fire" class="book">
+                         <ul class="hardcover-front" id="frontcover-demo">
+                            <li>
+                               <div class="cover-design demo3"></div>
+                            </li>
+                            <li></li>
+                         </ul>
+                         <ul class="book-pages">
+                            <li></li>
+                            <li>
+                               <div>
+                                  <p class="info-author">Author: J.K. Rowling</p>
+                                  <p class="info-pages">Number of pages: 636</p>
+                               </div>
+                            </li>
+                            <li>
+                               <p class="bookmark">Harry’s feeling of barely controlled panic was with him wherever he went, as everpresent as the snide comments about the Daily Prophet article.</p>
+                               <p class="bookmark-footer">317</p>
+                            </li>
+                            <li></li>
+                            <li></li>
+                         </ul>
+                         <ul class="hardcover-back">
+                            <li></li>
+                            <li></li>
+                         </ul>
+                         <ul class="book-spine">
+                            <li></li>
+                            <li></li>
+                         </ul>
+                      </div>
+                      <div class="buttons-wrapper">
+                        <button class="no" id="progress-demo" data-id="2" for="Harry Potter and the Goblet of Fire">Not yet read</button>
+                        <button class="delete-demo" data-id="2" for="Harry Potter and the Goblet of Fire"><i class="fa-solid fa-trash-can"></i></button>
+                      </div>
+                   </div>
+                </label>
+                <input type="radio" id="1" name="book-activation">
+            </div>
+
+            <button type="submit" class="add-book"><i class="fa-sharp fa-solid fa-plus"></i></button>
+        </div>
+
+        <button class="carousel next"><i class="fa-solid fa-angle-right"></i></button>
     </div>
     <!-- Footer -->
-    <div class="footer"></div>
+    <div class="footer">
+        <div class="footer-items">
+            
+            <div class="progress-wrapper">
+                <label for="read-progress" id = "footer-label">Read: 33%</label>
+                <progress id="read-progress" max="100" value="33"></progress>
+            </div>
+            <p class="progressing">In progress: 1</p>
+    
+            <p class="untouched">Untouched: 0</p>
+            <audio id="open-book">
+                <source src="page_peel.mp3" >
+            </audio>
+            <audio id="close-book">
+                <source src="book-closing.mp3" >
+            </audio>
+        </div>
+    </div>
 </body>
 </html>
