@@ -16,6 +16,11 @@
     src: url(./headway/HEADWAY.ttf);
 }
 
+@font-face {
+    font-family: modal;
+    src: url(./OnlineWebFonts_COM_9f825c0a60b9806828d7ba3c03f819e7/Colombine\ W01\ Regular.ttf);
+}
+
 *, *::before, *::after {
     box-sizing: border-box;
     padding: 0;
@@ -152,7 +157,7 @@ button:active {
 }
 
 .modal-content > label {
-    font-family: "ColombineW01-Regular";
+    font-family: modal;
     color: rgb(88,162,173);
     font-size: 15px;
     font-weight: bold;
