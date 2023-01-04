@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredericka+the+Great&family=Libre+Caslon+Text&family=Poppins&display=swap" rel="stylesheet">
-    <link href="//db.onlinewebfonts.com/c/ed038ea1be11eb370e1eee1e6072ef5d?family=ColombineW01-Regular" rel="stylesheet" type="text/css"/>
+    
 
     <script src="script.js" defer></script>
     <script src="https://kit.fontawesome.com/9d2558bfe7.js" crossorigin="anonymous"></script>
@@ -33,13 +33,13 @@
     <div class="modal" id="modal">
         <form class="modal-content">
             <label for="title">Title</label>
-            <input type="text" id="title" placeholder="e.g. The Dark Tower">
+            <input type="text" id="title" placeholder="e.g. The Dark Tower" name="title" required />
 
             <label for="author">Author</label>
-            <input type="text" id="author" placeholder="e.g. Stephen King" maxlength="100">
+            <input type="text" id="author" placeholder="e.g. Stephen King" maxlength="100" required />
 
             <label for="pages">Pages</label>
-            <input type="number" id="pages" placeholder="e.g. 4250"><!-- Can use pattern \d input=text since maxlength doesn't affect type=number -->
+            <input type="number" id="pages" placeholder="e.g. 4250" required /><!-- Can use pattern \d input=text since maxlength doesn't affect type=number -->
 
             <label for="bookmark-text">Bookmark text</label>
             <textarea type="text" id="bookmark-text" placeholder="e.g. ...And will I tell you that these three lived happily ever after? I will not, for no one ever does. But there was happiness. And they did live." maxlength="240"></textarea>

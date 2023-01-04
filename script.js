@@ -7,7 +7,6 @@ const bookmarkText = document.querySelector('textarea[id="bookmark-text"]')
 const bookmarkPage = document.querySelector('input[id="bookmark-page"]')
 const fileCover = document.querySelector('input[id="book-cover"]')
 
-
 const modal = document.getElementById('modal');
 
 const shelf = document.querySelector('.shelf')
@@ -468,25 +467,29 @@ function checkDuplicate(target) {
 /* ----------------------------------------------------------------------------- */
 
 function createBook(event) {
+    if (bookTitle.value && bookAuthor.value) {/* Prevent default = also ignore required form tag */
+        preventDefault(event);
+        checkDuplicate(bookTitle.value)
+        if (dupAlarm === 0) {
+            myShelf.push(new Book(bookTitle.value, bookAuthor.value, numberPages.value, bookmarkText.value, bookmarkPage.value, fileCover.value)); 
+            findId(bookTitle);
+            createInterface();
+            playAudio()
+            resetInput();
+            rearrange();
+            progressUpdate()
+            modal.style.display = 'none';
+            shelf.scrollLeft = shelf.scrollWidth;
+            dupAlarm = 0;
+        } else {
+            resetInput();
+            modal.style.display = 'none';
+            dupAlarm = 0;
+        }
+    } 
     
-    preventDefault(event);
-    checkDuplicate(bookTitle.value)
-    if (dupAlarm === 0) {
-        myShelf.push(new Book(bookTitle.value, bookAuthor.value, numberPages.value, bookmarkText.value, bookmarkPage.value, fileCover.value)); 
-        findId(bookTitle);
-        createInterface();
-        playAudio()
-        resetInput();
-        rearrange();
-        progressUpdate()
-        modal.style.display = 'none';
-        shelf.scrollLeft = shelf.scrollWidth;
-        dupAlarm = 0;
-    } else {
-        resetInput();
-        modal.style.display = 'none';
-        dupAlarm = 0;
-    }
+    return false
+    
 }
 
 submitBook.addEventListener('click', createBook)
@@ -630,5 +633,6 @@ function createDemo() {
 }
 
 createDemo()
+
 
 
