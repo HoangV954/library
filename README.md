@@ -6,7 +6,7 @@ Tribute to all the learners:
 - Customizable book covers
 - Return to your books with enthusiasm using personalized bookmarks 
 - Easy to track your reading habits and achievements
-- Bonus: Shifting through the lot with soothing paper sound!
+- **Bonus:** Shifting through the lot with soothing sound of paper!
 
 
 ## **Sneak peek?** 
