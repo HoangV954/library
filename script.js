@@ -146,6 +146,8 @@ function deleteBook(event) {
     
     // eslint-disable-next-line no-use-before-define
     rearrange()
+    // eslint-disable-next-line no-use-before-define
+    progressUpdate()
 }
 
 /* Find ID ---------------------------------------------------------------------- */
